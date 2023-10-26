@@ -23,3 +23,18 @@ RewriteRule ^(.*?)/?$ $1.php [L]
 RewriteCond %{HTTP_HOST} ^www\.getazreview\.com [NC]
 RewriteRule ^(.*)$ https://getazreview.com/$1 [R=301,L]
 
+#add www in url
+#Begin Really Simple Security
+<IfModule mod_rewrite.c>
+RewriteEngine on
+RewriteCond %{HTTPS} !=on [NC]
+RewriteCond %{REQUEST_URI} !wp-content\/cache\/(all|wpfc-mobile-cache)
+RewriteCond %{REQUEST_URI} !^/\.well-known/acme-challenge/
+RewriteCond %{HTTPS} off
+	RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+RewriteCond %{HTTP_HOST} !^www\. [NC]
+RewriteRule ^(.*)$ https://www.%{HTTP_HOST}/$1 [R=301,L]
+#RewriteRule (.*) https://www.%{HTTP_HOST}%{REQUEST_URI}
+</IfModule>
+
+
