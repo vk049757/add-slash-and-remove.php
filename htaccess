@@ -18,3 +18,8 @@ RewriteCond %{REQUEST_FILENAME}.php -f
 RewriteRule ^(.*?)/?$ $1.php [L]
 
 #this code is to remove .php and add / slash at the last of url
+
+# Redirect www to non-www
+RewriteCond %{HTTP_HOST} ^www\.getazreview\.com [NC]
+RewriteRule ^(.*)$ https://getazreview.com/$1 [R=301,L]
+
