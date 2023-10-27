@@ -25,6 +25,13 @@ RewriteRule ^(.*)$ https://getazreview.com/$1 [R=301,L]
 
 #add www in url
 #Begin Really Simple Security
+
+
+RewriteCond %{HTTP_HOST} !^www\. [NC]
+RewriteRule ^(.*)$ https://www.%{HTTP_HOST}/$1 [R=301,L]
+
+#both are ad to www
+
 <IfModule mod_rewrite.c>
 RewriteEngine on
 RewriteCond %{HTTPS} !=on [NC]
